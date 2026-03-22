@@ -5,12 +5,18 @@ namespace WinFormsApp1
     public partial class Form1 : Form
     {
 
-        MyRectangle myRect;
+        List<BaseObject> objects = new();
+        Player player;
 
         public Form1()
         {
             InitializeComponent();
-            myRect = new MyRectangle(100,100, 45);
+            
+            player = new Player(pbMain.Width/2, pbMain.Height/2, 0);
+            objects.Add(player);
+
+            objects.Add(new MyRectangle(50,50,0));
+            objects.Add(new MyRectangle(100, 100, 45));
         }
 
         private void pbMain_Paint(object sender, PaintEventArgs e)
@@ -18,10 +24,14 @@ namespace WinFormsApp1
             var g = e.Graphics;
 
             g.Clear(Color.White);
-  
-            g.Transform = myRect.GetTransform(); // устанавливаем новую матрицу
 
-            myRect.Render(g);
+            foreach (var obj in objects)
+            {
+                g.Transform = obj.GetTransform(); // устанавливаем новую матрицу
+
+                obj.Render(g);
+            }
+
         }
     }
 }
