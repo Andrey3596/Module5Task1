@@ -10,7 +10,7 @@ namespace WinFormsApp1
         public Form1()
         {
             InitializeComponent();
-            myRect = new MyRectangle(0, 0, 0);
+            myRect = new MyRectangle(100,100, 45);
         }
 
         private void pbMain_Paint(object sender, PaintEventArgs e)
@@ -18,9 +18,8 @@ namespace WinFormsApp1
             var g = e.Graphics;
 
             g.Clear(Color.White);
-
-            //g.FillRectangle(new SolidBrush(Color.Yellow), 200, 100, 50, 30);
-            //g.DrawRectangle(new Pen(Color.Red, 2), 200, 100, 50, 30);
+  
+            g.Transform = myRect.GetTransform(); // устанавливаем новую матрицу
 
             myRect.Render(g);
         }
