@@ -1,10 +1,16 @@
+using WinFormsApp1.Objects;
+
 namespace WinFormsApp1
 {
     public partial class Form1 : Form
     {
+
+        MyRectangle myRect;
+
         public Form1()
         {
             InitializeComponent();
+            myRect = new MyRectangle(0, 0, 0);
         }
 
         private void pbMain_Paint(object sender, PaintEventArgs e)
@@ -13,8 +19,10 @@ namespace WinFormsApp1
 
             g.Clear(Color.White);
 
-            g.FillRectangle(new SolidBrush(Color.Yellow), 200, 100, 50, 30);
-            g.DrawRectangle(new Pen(Color.Red, 2), 200, 100, 50, 30);
+            //g.FillRectangle(new SolidBrush(Color.Yellow), 200, 100, 50, 30);
+            //g.DrawRectangle(new Pen(Color.Red, 2), 200, 100, 50, 30);
+
+            myRect.Render(g);
         }
     }
 }
