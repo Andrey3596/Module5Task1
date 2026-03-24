@@ -77,8 +77,8 @@ namespace WinFormsApp1
                 dx /= length;
                 dy /= length;
 
-                player.X += dx * 0.5f;
-                player.Y += dy * 0.5f;
+                player.vX += dx * 0.5f;
+                player.vY += dy * 0.5f;
 
                 player.Angle = 90 - MathF.Atan2(player.vX, player.vY) * 180 / MathF.PI;
             }
