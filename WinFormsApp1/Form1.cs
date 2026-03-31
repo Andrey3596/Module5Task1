@@ -8,10 +8,15 @@ namespace WinFormsApp1
         List<BaseObject> objects = new();
         Player player;
         Marker marker;
-
+        GreenMarker greenMarker;
+        
+        //rnd.Next() % 3
         public Form1()
         {
             InitializeComponent();
+            var rnd = new Random();
+            greenMarker = new GreenMarker(rnd.Next() % pbMain.Width, rnd.Next() % pbMain.Width,0);
+            objects.Add(greenMarker);
 
             player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
 
