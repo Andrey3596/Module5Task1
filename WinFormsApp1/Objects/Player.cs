@@ -11,6 +11,7 @@ namespace WinFormsApp1.Objects
     {
         public Action<Marker> OnMarkerOverlap;
         public Action<GreenMarker> OnGreenMarkerOverlap;
+        public Action<RedMarker> OnRedMarkerOverlap;
 
         public float vX, vY;
 
@@ -45,8 +46,12 @@ namespace WinFormsApp1.Objects
                 OnMarkerOverlap(obj as Marker);
             }
 
-            else if (obj is GreenMarker) {
+            else if (obj is GreenMarker)
+            {
                 OnGreenMarkerOverlap(obj as GreenMarker);
+            }
+            else if (obj is RedMarker) {
+                OnRedMarkerOverlap(obj as RedMarker);
             }
         }
     }

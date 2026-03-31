@@ -7,10 +7,14 @@ using System.Threading.Tasks;
 
 namespace WinFormsApp1.Objects
 {
-    class GreenMarker : BaseObject
+    class RedMarker : BaseObject
     {
-        
-        public GreenMarker(float x, float y, float angle) : base(x, y, angle)
+        public float xRed = -6;
+        public float yRed = -6;
+        public float hRed = 12;
+        public float wRed = 12;
+
+        public RedMarker(float x, float y, float angle) : base(x, y, angle)
         {
 
         }
@@ -19,16 +23,15 @@ namespace WinFormsApp1.Objects
         public override void Render(Graphics g)
         {
             
-            g.FillEllipse(new SolidBrush(Color.Green), -12, -12, 24, 24);
+            g.FillEllipse(new SolidBrush(Color.Red), xRed, xRed, hRed, hRed);
 
-            g.DrawEllipse(new Pen(Color.Black, 2), -12, -12, 24, 24);
 
         }
 
         public override GraphicsPath GetGraphicsPath()
         {
             var path = base.GetGraphicsPath();
-            path.AddEllipse(-12, -12, 24, 24);
+            path.AddEllipse(xRed, xRed, hRed, hRed);
             return path;
         }
     }

@@ -9,12 +9,17 @@ namespace WinFormsApp1
         Player player;
         Marker marker;
         GreenMarker greenMarker;
+        RedMarker redMarker;
         
         //rnd.Next() % 3
         public Form1()
         {
             InitializeComponent();
             var rnd = new Random();
+
+            objects.Add(new MyRectangle(50, 50, 0));
+            objects.Add(new MyRectangle(100, 100, 45));
+
 
             player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
 
@@ -25,15 +30,18 @@ namespace WinFormsApp1
 
             objects.Add(player);
 
-            marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
 
-            player.OnMarkerOverlap += (m) =>
+
+
+            redMarker = new RedMarker((rnd.Next() % pbMain.Width / 2), (rnd.Next() % pbMain.Width / 2), 0);
+            player.OnRedMarkerOverlap += (m) =>
             {
                 objects.Remove(m);
-                marker = null;
+                redMarker = new RedMarker((rnd.Next() % pbMain.Width / 2), (rnd.Next() % pbMain.Width / 2), 0);
+                objects.Add(redMarker);
+                textCount.Text = (int.Parse(textCount.Text) - 1).ToString();
             };
-
-            objects.Add(marker);
+            objects.Add(redMarker);
 
 
             greenMarker = new GreenMarker((rnd.Next() % pbMain.Width/2), (rnd.Next() % pbMain.Width / 2), 0);
@@ -46,10 +54,15 @@ namespace WinFormsApp1
             };
             objects.Add(greenMarker);
 
-            objects.Add(new MyRectangle(50, 50, 0));
-            objects.Add(new MyRectangle(100, 100, 45));
 
+            marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
+            player.OnMarkerOverlap += (m) =>
+            {
+                objects.Remove(m);
+                marker = null;
+            };
 
+            objects.Add(marker);
 
         }
 
@@ -95,6 +108,11 @@ namespace WinFormsApp1
                 player.vY += dy * 0.5f;
 
                 player.Angle = 90 - MathF.Atan2(player.vX, player.vY) * 180 / MathF.PI;
+            }
+            if (redMarker != null)
+            {
+                redMarker.hRed++;
+                redMarker.xRed = -(redMarker.hRed/2);
             }
 
             player.vX += -player.vX * 0.1f;
