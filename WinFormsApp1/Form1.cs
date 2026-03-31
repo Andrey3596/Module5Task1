@@ -42,6 +42,7 @@ namespace WinFormsApp1
                 objects.Remove(m);
                 greenMarker = new GreenMarker((rnd.Next() % pbMain.Width / 2), (rnd.Next() % pbMain.Width / 2), 0);
                 objects.Add(greenMarker);
+                textCount.Text = (int.Parse(textCount.Text) + 1).ToString();
             };
             objects.Add(greenMarker);
 
