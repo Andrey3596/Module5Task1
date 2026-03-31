@@ -30,7 +30,14 @@ namespace WinFormsApp1
 
             objects.Add(player);
 
+            marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
+            player.OnMarkerOverlap += (m) =>
+            {
+                objects.Remove(m);
+                marker = null;
+            };
 
+            objects.Add(marker);
 
 
             redMarker = new RedMarker((rnd.Next() % pbMain.Width / 2), (rnd.Next() % pbMain.Width / 2), 0);
@@ -55,14 +62,6 @@ namespace WinFormsApp1
             objects.Add(greenMarker);
 
 
-            marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
-            player.OnMarkerOverlap += (m) =>
-            {
-                objects.Remove(m);
-                marker = null;
-            };
-
-            objects.Add(marker);
 
         }
 
@@ -111,8 +110,8 @@ namespace WinFormsApp1
             }
             if (redMarker != null)
             {
-                redMarker.hRed++;
-                redMarker.xRed = -(redMarker.hRed/2);
+                redMarker.size++;
+                
             }
 
             player.vX += -player.vX * 0.1f;
