@@ -32,6 +32,8 @@
             pbMain = new PictureBox();
             timer1 = new System.Windows.Forms.Timer(components);
             txtLog = new RichTextBox();
+            label1 = new Label();
+            textCount = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pbMain).BeginInit();
             SuspendLayout();
             // 
@@ -53,23 +55,43 @@
             // 
             // txtLog
             // 
-            txtLog.Location = new Point(687, 28);
+            txtLog.Location = new Point(687, 58);
             txtLog.Name = "txtLog";
-            txtLog.Size = new Size(246, 475);
+            txtLog.Size = new Size(246, 445);
             txtLog.TabIndex = 1;
             txtLog.Text = "";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(694, 36);
+            label1.Name = "label1";
+            label1.Size = new Size(53, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Счетчик";
+            // 
+            // textCount
+            // 
+            textCount.Location = new Point(753, 33);
+            textCount.Name = "textCount";
+            textCount.Size = new Size(27, 23);
+            textCount.TabIndex = 3;
+            textCount.Text = "0";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(945, 515);
+            Controls.Add(textCount);
+            Controls.Add(label1);
             Controls.Add(txtLog);
             Controls.Add(pbMain);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)pbMain).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -77,5 +99,7 @@
         private PictureBox pbMain;
         private System.Windows.Forms.Timer timer1;
         private RichTextBox txtLog;
+        private Label label1;
+        private TextBox textCount;
     }
 }

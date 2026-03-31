@@ -17,10 +17,10 @@ namespace WinFormsApp1.Objects
 
         public override void Render(Graphics g)
         {
-            g.FillEllipse(new SolidBrush(Color.Black), -12, -12, 24, 24);
+            g.FillEllipse(new SolidBrush(Color.Green), -12, -12, 24, 24);
 
 
-            g.DrawEllipse(new Pen(Color.Green, 2), -12, -12, 24, 24);
+            g.DrawEllipse(new Pen(Color.Black, 2), -12, -12, 24, 24);
 
         }
 

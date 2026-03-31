@@ -15,8 +15,6 @@ namespace WinFormsApp1
         {
             InitializeComponent();
             var rnd = new Random();
-            greenMarker = new GreenMarker(rnd.Next() % pbMain.Width, rnd.Next() % pbMain.Width,0);
-            objects.Add(greenMarker);
 
             player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
 
@@ -36,6 +34,16 @@ namespace WinFormsApp1
             };
 
             objects.Add(marker);
+
+
+            greenMarker = new GreenMarker((rnd.Next() % pbMain.Width/2), (rnd.Next() % pbMain.Width / 2), 0);
+            player.OnGreenMarkerOverlap += (m) =>
+            {
+                objects.Remove(m);
+                greenMarker = new GreenMarker((rnd.Next() % pbMain.Width / 2), (rnd.Next() % pbMain.Width / 2), 0);
+                objects.Add(greenMarker);
+            };
+            objects.Add(greenMarker);
 
             objects.Add(new MyRectangle(50, 50, 0));
             objects.Add(new MyRectangle(100, 100, 45));
