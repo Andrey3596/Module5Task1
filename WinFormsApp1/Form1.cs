@@ -41,7 +41,7 @@ namespace WinFormsApp1
 
 
             redMarker = new RedMarker((rnd.Next() % pbMain.Width / 2), (rnd.Next() % pbMain.Width / 2), 0);
-            player.OnRedMarkerOverlap += (m) =>
+            redMarker.OnPlayerTouch += (m) =>
             {
                 objects.Remove(m);
                 redMarker = new RedMarker((rnd.Next() % pbMain.Width / 2), (rnd.Next() % pbMain.Width / 2), 0);
