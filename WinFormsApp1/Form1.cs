@@ -17,18 +17,20 @@ namespace WinFormsApp1
             InitializeComponent();
             var rnd = new Random();
 
+
             objects.Add(new MyRectangle(50, 50, 0));
             objects.Add(new MyRectangle(100, 100, 45));
 
 
-            player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
 
+            player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
             player.OnOverlap += (p, obj) =>
             {
                 txtLog.Text = $"[{DateTime.Now:HH:mm:ss:ff}] Игрок пересекся с {obj}\n" + txtLog.Text;
             };
-
             objects.Add(player);
+
+
 
             marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
             player.OnMarkerOverlap += (m) =>
@@ -36,26 +38,29 @@ namespace WinFormsApp1
                 objects.Remove(m);
                 marker = null;
             };
-
             objects.Add(marker);
+
 
 
             redMarker = new RedMarker((rnd.Next() % pbMain.Width / 2), (rnd.Next() % pbMain.Width / 2), 0);
             redMarker.OnPlayerTouch += (m) =>
             {
-                objects.Remove(m);
-                redMarker = new RedMarker((rnd.Next() % pbMain.Width / 2), (rnd.Next() % pbMain.Width / 2), 0);
-                objects.Add(redMarker);
+
+                m.X = (rnd.Next() % pbMain.Width / 2);
+                m.Y = (rnd.Next() % pbMain.Width / 2);
+                m.size = 12;
                 textCount.Text = (int.Parse(textCount.Text) - 1).ToString();
+
             };
             objects.Add(redMarker);
 
 
-            greenMarker = new GreenMarker((rnd.Next() % pbMain.Width/2), (rnd.Next() % pbMain.Width / 2), 0);
+
+            greenMarker = new GreenMarker((rnd.Next() % pbMain.Width/2), (rnd.Next() % pbMain.Height / 2), 0);
             player.OnGreenMarkerOverlap += (m) =>
             {
                 objects.Remove(m);
-                greenMarker = new GreenMarker((rnd.Next() % pbMain.Width / 2), (rnd.Next() % pbMain.Width / 2), 0);
+                greenMarker = new GreenMarker((rnd.Next() % pbMain.Width / 2), (rnd.Next() % pbMain.Height / 2), 0);
                 objects.Add(greenMarker);
                 textCount.Text = (int.Parse(textCount.Text) + 1).ToString();
             };
@@ -111,7 +116,6 @@ namespace WinFormsApp1
             if (redMarker != null)
             {
                 redMarker.size++;
-                
             }
 
             player.vX += -player.vX * 0.1f;

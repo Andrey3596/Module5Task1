@@ -33,16 +33,16 @@ namespace WinFormsApp1.Objects
             return path;
         }
 
-
         public override void Overlap(BaseObject obj)
         {
             base.Overlap(obj);
 
-            // Если пересеклись с игроком – вызываем событие
+            // Если пересеклись с игроком  вызываем событие
             if (obj is Player)
             {
-                OnPlayerTouch?.Invoke(this);
+                OnPlayerTouch(this);
             }
         }
+
     }
 }
