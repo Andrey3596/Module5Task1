@@ -42,12 +42,12 @@ namespace WinFormsApp1
 
 
 
-            redMarker = new RedMarker((rnd.Next() % pbMain.Width / 2), (rnd.Next() % pbMain.Width / 2), 0);
+            redMarker = new RedMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
             redMarker.OnPlayerTouch += (m) =>
             {
 
-                m.X = (rnd.Next() % pbMain.Width / 2);
-                m.Y = (rnd.Next() % pbMain.Width / 2);
+                m.X = (rnd.Next() % pbMain.Width);
+                m.Y = (rnd.Next() % pbMain.Height);
                 m.size = 12;
                 textCount.Text = (int.Parse(textCount.Text) - 1).ToString();
 
@@ -56,11 +56,11 @@ namespace WinFormsApp1
 
 
 
-            greenMarker = new GreenMarker((rnd.Next() % pbMain.Width/2), (rnd.Next() % pbMain.Height / 2), 0);
+            greenMarker = new GreenMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
             player.OnGreenMarkerOverlap += (m) =>
             {
                 objects.Remove(m);
-                greenMarker = new GreenMarker((rnd.Next() % pbMain.Width / 2), (rnd.Next() % pbMain.Height / 2), 0);
+                greenMarker = new GreenMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
                 objects.Add(greenMarker);
                 textCount.Text = (int.Parse(textCount.Text) + 1).ToString();
             };
