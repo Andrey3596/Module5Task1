@@ -11,7 +11,7 @@ namespace WinFormsApp1.Objects
     {
        
         public float size = 12;
-        public event Action<RedMarker> OnPlayerTouch;
+        //public event Action<RedMarker> OnPlayerTouch;
         public RedMarker(float x, float y, float angle) : base(x, y, angle)
         {
 
@@ -33,16 +33,16 @@ namespace WinFormsApp1.Objects
             return path;
         }
 
-        public override void Overlap(BaseObject obj)
-        {
-            base.Overlap(obj);
+        //public override void Overlap(BaseObject obj)
+        //{
+        //    base.Overlap(obj);
 
-            // Если пересеклись с игроком  вызываем событие
-            if (obj is Player)
-            {
-                OnPlayerTouch(this);
-            }
-        }
+        //    // Если пересеклись с игроком  вызываем событие
+        //    if (obj is Player)
+        //    {
+        //        OnPlayerTouch(this);
+        //    }
+        //}
 
     }
 }

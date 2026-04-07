@@ -9,8 +9,12 @@ namespace WinFormsApp1
         Player player;
         Marker marker;
         GreenMarker greenMarker;
-        RedMarker redMarker;
-        
+
+
+        RedMarker redMarkerOne;
+        RedMarker redMarkerTwo;
+        RedMarker redMarkerFree;
+        int count = 0;
         //rnd.Next() % 3
         public Form1()
         {
@@ -27,6 +31,22 @@ namespace WinFormsApp1
             player.OnOverlap += (p, obj) =>
             {
                 txtLog.Text = $"[{DateTime.Now:HH:mm:ss:ff}] Игрок пересекся с {obj}\n" + txtLog.Text;
+
+                if (obj is RedMarker red)
+                {
+                    red.X = (rnd.Next() % pbMain.Width);
+                    red.Y = (rnd.Next() % pbMain.Height);
+                    red.size = 12;
+                    textCount.Text = (count - 1).ToString();
+                    count--;
+                }
+                else if (obj is GreenMarker) {
+                    objects.Remove(obj);
+                    greenMarker = new GreenMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
+                    objects.Add(greenMarker);
+                    textCount.Text = (count + 1).ToString();
+                    count++;
+                }
             };
             objects.Add(player);
 
@@ -42,28 +62,35 @@ namespace WinFormsApp1
 
 
 
-            redMarker = new RedMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
-            redMarker.OnPlayerTouch += (m) =>
-            {
+            redMarkerOne = new RedMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
+            redMarkerTwo = new RedMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
+            redMarkerFree = new RedMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
 
-                m.X = (rnd.Next() % pbMain.Width);
-                m.Y = (rnd.Next() % pbMain.Height);
-                m.size = 12;
-                textCount.Text = (int.Parse(textCount.Text) - 1).ToString();
+            //player.OnPlayerTouch += (m) =>
+            //{
 
-            };
-            objects.Add(redMarker);
+            //    m.X = (rnd.Next() % pbMain.Width);
+            //    m.Y = (rnd.Next() % pbMain.Height);
+            //    m.size = 12;
+            //    textCount.Text = (count - 1).ToString();
+            //    count--;
 
+            //};
 
+            
+            objects.Add(redMarkerOne);
+            objects.Add(redMarkerTwo);
+            objects.Add(redMarkerFree);
 
             greenMarker = new GreenMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
-            player.OnGreenMarkerOverlap += (m) =>
-            {
-                objects.Remove(m);
-                greenMarker = new GreenMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
-                objects.Add(greenMarker);
-                textCount.Text = (int.Parse(textCount.Text) + 1).ToString();
-            };
+            //player.OnGreenMarkerOverlap += (m) =>
+            //{
+            //    objects.Remove(m);
+            //    greenMarker = new GreenMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
+            //    objects.Add(greenMarker);
+            //    textCount.Text = (count + 1).ToString();
+            //    count++;
+            //};
             objects.Add(greenMarker);
 
 
@@ -113,10 +140,19 @@ namespace WinFormsApp1
 
                 player.Angle = 90 - MathF.Atan2(player.vX, player.vY) * 180 / MathF.PI;
             }
-            if (redMarker != null)
+            if (redMarkerOne != null)
             {
-                redMarker.size++;
+                redMarkerOne.size++;
             }
+            if (redMarkerTwo!= null)
+            {
+                redMarkerTwo.size++;
+            }
+            if (redMarkerFree != null)
+            {
+                redMarkerFree.size++;
+            }
+
 
             player.vX += -player.vX * 0.1f;
             player.vY += -player.vY * 0.1f;

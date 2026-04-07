@@ -10,8 +10,8 @@ namespace WinFormsApp1.Objects
     class Player : BaseObject
     {
         public Action<Marker> OnMarkerOverlap;
-        public Action<GreenMarker> OnGreenMarkerOverlap;
-        
+        //public Action<GreenMarker> OnGreenMarkerOverlap;
+        //public event Action<RedMarker> OnPlayerTouch;
 
         public float vX, vY;
 
@@ -31,7 +31,8 @@ namespace WinFormsApp1.Objects
         }
 
 
-        public override GraphicsPath GetGraphicsPath() {
+        public override GraphicsPath GetGraphicsPath()
+        {
             var path = base.GetGraphicsPath();
             path.AddEllipse(-15, -15, 30, 30);
             return path;
@@ -46,10 +47,14 @@ namespace WinFormsApp1.Objects
                 OnMarkerOverlap(obj as Marker);
             }
 
-            else if (obj is GreenMarker)
-            {
-                OnGreenMarkerOverlap(obj as GreenMarker);
-            }
+            //else if (obj is GreenMarker)
+            //{
+            //    OnGreenMarkerOverlap(obj as GreenMarker);
+            //}
+            //else if (obj is RedMarker)
+            //{
+            //    OnPlayerTouch(obj as RedMarker);
+            //}
         }
     }
 }
