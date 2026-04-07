@@ -32,8 +32,9 @@ namespace WinFormsApp1
             {
                 txtLog.Text = $"[{DateTime.Now:HH:mm:ss:ff}] Игрок пересекся с {obj}\n" + txtLog.Text;
 
-                if (obj is RedMarker red)
+                if (obj is RedMarker)
                 {
+                    RedMarker red = (RedMarker)obj;
                     red.X = (rnd.Next() % pbMain.Width);
                     red.Y = (rnd.Next() % pbMain.Height);
                     red.size = 12;
@@ -66,16 +67,7 @@ namespace WinFormsApp1
             redMarkerTwo = new RedMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
             redMarkerFree = new RedMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
 
-            //player.OnPlayerTouch += (m) =>
-            //{
-
-            //    m.X = (rnd.Next() % pbMain.Width);
-            //    m.Y = (rnd.Next() % pbMain.Height);
-            //    m.size = 12;
-            //    textCount.Text = (count - 1).ToString();
-            //    count--;
-
-            //};
+            
 
             
             objects.Add(redMarkerOne);
@@ -83,14 +75,7 @@ namespace WinFormsApp1
             objects.Add(redMarkerFree);
 
             greenMarker = new GreenMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
-            //player.OnGreenMarkerOverlap += (m) =>
-            //{
-            //    objects.Remove(m);
-            //    greenMarker = new GreenMarker((rnd.Next() % pbMain.Width), (rnd.Next() % pbMain.Height), 0);
-            //    objects.Add(greenMarker);
-            //    textCount.Text = (count + 1).ToString();
-            //    count++;
-            //};
+            
             objects.Add(greenMarker);
 
 

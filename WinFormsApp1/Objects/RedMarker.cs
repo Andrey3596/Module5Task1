@@ -11,12 +11,11 @@ namespace WinFormsApp1.Objects
     {
        
         public float size = 12;
-        //public event Action<RedMarker> OnPlayerTouch;
+        
         public RedMarker(float x, float y, float angle) : base(x, y, angle)
         {
 
         }
-
 
         public override void Render(Graphics g)
         {
@@ -32,17 +31,6 @@ namespace WinFormsApp1.Objects
             path.AddEllipse(-(size / 2), -(size / 2), size, size);
             return path;
         }
-
-        //public override void Overlap(BaseObject obj)
-        //{
-        //    base.Overlap(obj);
-
-        //    // Если пересеклись с игроком  вызываем событие
-        //    if (obj is Player)
-        //    {
-        //        OnPlayerTouch(this);
-        //    }
-        //}
 
     }
 }
